@@ -1,0 +1,23 @@
+{
+  "name": "cfc-api",
+  "version": "1.0.0",
+  "description": "learning RestAPI uesing ExpressJs + MongoDB",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "ExpressJS",
+    "&&",
+    "MongoBD"
+  ],
+  "author": "aranh-dev",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.9",
+    "nodemon": "^2.0.15"
+  }
+}
