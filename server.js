@@ -1,25 +1,28 @@
+//init
 const express = require('express');
-const app = express();
-
-PORT = 9999;
-
-const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({extended:false}))
-
-// connect to database
-
 const connectDb = require('./connectDb');
+const app = express();
+const port = 3001;
+
+//bodyParser
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+//connectDb
 connectDb();
 
-// load route
+//load all route
 
-require('./routes/user.routes')(app);
-require('./routes/product.routes')(app);
-require('./routes/book.routes')(app);
+//users routes
+require('./routes/users.routes')(app);
+//News Routes
+require('./routes/news.routes')(app);
+//Stories Routes
+require('./routes/stories.routes')(app);
 
-// start server in port
-
-app.listen(PORT, ()=>{
-    console.log(`server is starting http://localhost:${PORT}`);
+//console port
+app.listen(port, () => {
+  console.log(`server is start http://localhost:${port}`);
 });
 

@@ -1,11 +1,10 @@
-const UserModel = require('./user.model');
-const ProductModel = require('./product.model');
-const BookModel = require('./book.model');
+const UsersModel = require('./users.model');
+const NewsModel = require('./news.model');
+const StoriesModel = require('./stories.model');
 
-let db = {};
-db.users = UserModel;
-db.product = ProductModel;
-db.book = BookModel;
+let db = {}
 
-
+db.users = UsersModel;
+db.news = NewsModel;
+db.stories = StoriesModel;
 module.exports = db;
