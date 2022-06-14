@@ -3,12 +3,19 @@ const storySchema = new mongoose.Schema({
     createBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users',
-        // required: true, need required when test with auth
+        required: true,
     },
     title: {
         type: String,
         required: true,
     },
+    category: [
+        {
+            type: String,
+            enum: ['hot', 'event', 'holiday', 'scholaship', 'job', 'tip', 'other'],
+            default: 'other',
+        },
+    ],
     coverName: [
         {
             type: String,

@@ -1,24 +1,22 @@
 const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({
-    fristName: {
+
+    //required document
+    firstName: {
         type: String,
-        // required: [true, 'first name is required'],
+        required: true,
     },
     lastName: {
         type: String,
-        // required: [true, 'last name is required'],
-    },
-    gender: {
-        type: String,
-        // required: [true, 'gender is required'],
+        required: true,
     },
     email: {
         type: String,
-        required: [true, 'eamil is required'],
+        required: true,
     },
     password: {
         type: String,
-        required: [true, 'password is required'],
+        required: true,
     },
 
     //optional document
@@ -28,22 +26,36 @@ const userSchema = new mongoose.Schema({
     birthdate: {
         type: String,
     },
-    grade: {
+    class: {
         type: String, // join by code
     },
     contact: {
         type: String,
     },
     status: {
-        type: Array,
+        type: Array, //not sure check later
     },
     bio: {
         type: String,
     },
-    favorite: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'news',
+    major: {
+        type: String,
     },
+    job:{
+        type: String,
+    },
+    address: {
+        type: String,
+    },
+    description: {
+        type: String,
+    },
+    favorite: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'news',
+        }
+    ],
 
     //role
     role: {

@@ -16,10 +16,16 @@ connectDb();
 
 //users routes
 require('./routes/users.routes')(app);
-//News Routes
+//news routes
 require('./routes/news.routes')(app);
-//Stories Routes
+//stories routes
 require('./routes/stories.routes')(app);
+//students routes
+require('./routes/students.routes')(app);
+//statuses routes
+require('./routes/events.routes')(app);
+//communities routes
+require('./routes/communities.routes')(app);
 
 //console port
 app.listen(port, () => {

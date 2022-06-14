@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const newsSchema = new mongoose.Schema({
+const communitySchema = new mongoose.Schema({
     createBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'users',
@@ -9,59 +9,54 @@ const newsSchema = new mongoose.Schema({
         {
             type: String,
             enum: ['hot', 'event', 'holiday', 'scholaship', 'job', 'tip', 'other'],
-            default: 'other',
-        },
-    ],
-
-    // optional document but between coverName and title can not empty one
-    coverName: [
-        {
-            type: String,
+            default: 'other'
         },
     ],
     title: {
         type: String,
+        required: true,
     },
     description: {
         type: String,
     },
-    react: [
+    vote: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'users',
-            required: true,
         },
     ],
-    comment: [
+    answer: [
         {
             _id: {
                 type: String,
-                required: true,
             },
             userId: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'users',
-                required: true,
             },
             text: {
                 type: String,
-                required: true,
             },
             date: {
                 type: Date,
                 default: Date.now,
-            }
+            },
+            vote: [
+                {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: 'users',
+                },
+            ],
         },
     ],
-    share:[
-        {
+    share: {
+        userId: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'users',
-            required: true,
         },
-    ],
+    },
 }, { timestamps: true })
 
-const NewsModel = mongoose.model('news', newsSchema);
+const CommunitiesModel = mongoose.model('communities', communitySchema);
 
-module.exports = NewsModel;
+module.exports = CommunitiesModel;
