@@ -44,7 +44,7 @@ const createCommunity = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        res.status(500).send({ message:error.message|| 'Internal server error' });
+        res.status(500).send({ message: 'Internal server error' });
     };
 };
 
