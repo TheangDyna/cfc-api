@@ -5,13 +5,11 @@ const communitySchema = new mongoose.Schema({
         ref: 'users',
         required: true,
     },
-    category: [
-        {
-            type: String,
-            enum: ['hot', 'event', 'holiday', 'scholaship', 'job', 'tip', 'other'],
-            default: 'other'
-        },
-    ],
+    category: {
+        type: String,
+        enum: ['hot', 'event', 'holiday', 'scholarship', 'job', 'tip', 'other'],
+        default: 'other'
+    },
     title: {
         type: String,
         required: true,
@@ -49,12 +47,12 @@ const communitySchema = new mongoose.Schema({
             ],
         },
     ],
-    share: {
-        userId: {
+    share:  [
+        {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'users',
         },
-    },
+    ],
 }, { timestamps: true })
 
 const CommunitiesModel = mongoose.model('communities', communitySchema);

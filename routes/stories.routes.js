@@ -5,6 +5,7 @@ module.exports = (app) => {
 
     //guest
     app.get('/alumni/v1/stories', controller.getStories);
+    app.get('/alumni/v1/events/getDetailStory/:storyId', controller.getDetailStory);
 
     // admin
     app.post('/alumni/v1/stories', [authJwt.verifyToken, authJwt.isAdmin], controller.createStory);

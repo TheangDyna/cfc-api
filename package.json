@@ -17,9 +17,11 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.2",
+    "dotenv": "^16.0.1",
     "express": "^4.17.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.2.8",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "uuidv4": "^6.2.13",
     "validator": "^13.7.0"

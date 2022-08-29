@@ -238,10 +238,13 @@ const getAdmins = async (req, res) => {
 //user register for student
 const register = async (req, res) => {
     const body = req.body;
+    const { role } = req.body;
     try {
 
         //empty body
         if (Object.keys(body).length == 0) return res.status(401).send({ message: 'Empty body' });
+
+        if (role) return res.status(401).send({ message: 'Can not add role' });
 
         //create data
         const newUser = new db.users({
@@ -382,6 +385,9 @@ const updateUserPassword = async (req, res) => {
         //enter new password
         if (!newPassword) return res.status(401).send({ message: 'Enter new password' });
 
+        //check password digits
+        if (body.newPassword.length < 6) return res.status(401).send({ message: 'Password at least 6 digits' });
+
         //incrypt new password
         const password = await bcrypt.hashSync(newPassword, 8);
 
@@ -406,7 +412,7 @@ const updateUser = async (req, res) => {
     //const { userId } = req.params;
     const userId = req.userId;
     const body = req.body;
-    const { email } = req.body;
+    const { email, role, password } = req.body;
 
     try {
 
@@ -417,7 +423,10 @@ const updateUser = async (req, res) => {
         const findId = await db.users.findById(userId);
         if (!findId) return res.status(404).send({ message: 'Not find user' });
 
+        //can not update these
         if (email) return res.status(401).send({ message: 'Can not update email' });
+        if (role) return res.status(401).send({ message: 'Can not update role' });
+        if (password) return res.status(401).send({ message: 'Can not update password' });
 
         //save update
         await db.users.findByIdAndUpdate(userId, body);

@@ -5,6 +5,7 @@ module.exports = (app) => {
 
     //guest
     app.get('/alumni/v1/news', controller.getNews);
+    app.get('/alumni/v1/news/getDetailNews/:newsId', controller.getDetailNews);
 
     //user
     app.post('/alumni/v1/news/addComments/:newsId', [authJwt.verifyToken], controller.addComment);

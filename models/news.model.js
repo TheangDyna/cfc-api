@@ -5,13 +5,11 @@ const newsSchema = new mongoose.Schema({
         ref: 'users',
         required: true,
     },
-    category: [
-        {
-            type: String,
-            enum: ['hot', 'event', 'holiday', 'scholaship', 'job', 'tip', 'other'],
-            default: 'other',
-        },
-    ],
+    category: {
+        type: String,
+        enum: ['hot', 'event', 'holiday', 'scholarship', 'job', 'tip', 'other'],
+        default: 'other',
+    },
 
     // optional document but between coverName and title can not empty one
     coverName: [
@@ -53,7 +51,7 @@ const newsSchema = new mongoose.Schema({
             }
         },
     ],
-    share:[
+    share: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'users',

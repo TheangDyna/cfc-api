@@ -129,10 +129,30 @@ const deleteStory = async (req, res) => {
     };
 };
 
+//get detail story
+const getDetailStory = async (req, res) => {
+    const { storyId } = req.params;
+
+    try {
+
+        //find story id
+        const findId = await db.stories.findById(storyId);
+        if (!findId) return res.status(404).send({ message: 'Not find story' });
+
+        res.status(200).send({
+            message: 'Success',
+            data: findId,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: 'Internal server error' });
+    };
+};
 
 module.exports = {
     getStories,
     createStory,
     updateStory,
     deleteStory,
+    getDetailStory,
 };

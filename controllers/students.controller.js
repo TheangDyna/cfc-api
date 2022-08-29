@@ -124,6 +124,7 @@ const joinClass = async (req, res) => {
             message: 'Success',
             count: findClass.student.length,
             data: newStudent,
+            classData: findClass,
         });
     } catch (error) {
         console.log(error);
@@ -156,6 +157,7 @@ const leaveClass = async (req, res) => {
         res.status(200).send({
             message: 'Success',
             data,
+            classData: findId,
         });
     } catch (error) {
         console.log(error);
@@ -163,6 +165,26 @@ const leaveClass = async (req, res) => {
     }
 };
 
+//get detail student
+const getDetailStudent = async (req, res) => {
+    const { studentId } = req.params;
+
+    try {
+
+        //find student id
+        const findId = await db.students.findById(studentId);
+        if (!findId) return res.status(404).send({ message: 'Not find student' });
+
+        res.status(200).send({
+            message: 'Success',
+            countStudent: findId.student.length,
+            data: findId,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: 'Internal server error' });
+    };
+};
 
 module.exports = {
     getStudents,
@@ -171,4 +193,5 @@ module.exports = {
     deleteStudent,
     joinClass,
     leaveClass,
+    getDetailStudent,
 };

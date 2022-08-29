@@ -5,13 +5,11 @@ const eventSchema = new mongoose.Schema({
         ref: 'users',
         required: true,
     },
-    category: [
-        {
+    category: {
             type: String,
-            enum: ['hot', 'event', 'holiday', 'scholaship', 'job', 'tip', 'other'],
+            enum: ['hot', 'event', 'holiday', 'scholarship', 'job', 'tip', 'other'],
             default: 'other'
         },
-    ],
     coverName: {
         type: String,
         required: true,

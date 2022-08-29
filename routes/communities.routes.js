@@ -5,6 +5,7 @@ module.exports = (app) => {
 
     //guest
     app.get('/alumni/v1/communities', controller.getCommunities);
+    app.get('/alumni/v1/communities/getDetailCommunity/:communityId', controller.getDetailCommunity);
 
     //user
     app.post('/alumni/v1/communities', [authJwt.verifyToken], controller.createCommunity);

@@ -108,7 +108,7 @@ const updateNews = async (req, res) => {
         const newsUpdate = await db.news.findById(newsId);
 
         res.status(200).send({
-            message: 'Update succes',
+            message: 'Succes',
             newsUpdate,
         });
     } catch (error) {
@@ -165,7 +165,8 @@ const addComment = async (req, res) => {
 
         res.status(200).send({
             message: 'Success',
-            data,
+            userId,
+            text,
         });
     } catch (error) {
         console.log(error);
@@ -306,6 +307,29 @@ const share = async (req, res) => {
     };
 };
 
+//get detail news
+const getDetailNews = async (req, res) => {
+    const { newsId } = req.params;
+
+    try {
+
+        //find news id
+        const findId = await db.news.findById(newsId);
+        if (!findId) return res.status(404).send({ message: 'Not find news' });
+
+        res.status(200).send({
+            message: 'Success',
+            countReact: findId.react.length,
+            countComment: findId.comment.length,
+            countShare: findId.share.length,
+            data: findId,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: 'Internal server error' });
+    };
+};
+
 module.exports = {
     getNews,
     createNews,
@@ -316,4 +340,5 @@ module.exports = {
     addReact,
     removeReact,
     share,
+    getDetailNews,
 };

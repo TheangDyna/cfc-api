@@ -7,7 +7,6 @@ const getCommunities = async (req, res) => {
 
         //find community id
         const data = await db.communities.find();
-
         res.status(200).send({
             message: 'Success',
             count: data.length,
@@ -23,7 +22,6 @@ const getCommunities = async (req, res) => {
 const createCommunity = async (req, res) => {
     const body = req.body;
     const userId = req.userId;
-
     try {
 
         //empty body
@@ -34,7 +32,7 @@ const createCommunity = async (req, res) => {
             createBy: userId,
             title: body.title,
             category: body.category,
-            description: body.descripton,
+            description: body.description,
         });
 
         //save new community
@@ -46,7 +44,7 @@ const createCommunity = async (req, res) => {
         });
     } catch (error) {
         console.log(error);
-        res.status(500).send({ message: 'Internal server error' });
+        res.status(500).send({ message:error.message|| 'Internal server error' });
     };
 };
 
@@ -101,6 +99,7 @@ const deleteCommunity = async (req, res) => {
 const addAnswer = async (req, res) => {
     const userId = req.userId;
     const body = req.body;
+    const { answer } = req.body;
     const { communityId } = req.params;
 
     try {
@@ -117,14 +116,15 @@ const addAnswer = async (req, res) => {
         const newAnswer = {
             _id: uuidv4(),
             userId,
-            text,
+            answer,
         };
 
-        const data = await findId.answer.unshift(newAnswer);
+        await findId.answer.unshift(newAnswer);
         findId.save();
         res.status(200).send({
             message: 'Success',
-            data,
+            userId,
+            answer,
         });
     } catch (error) {
         console.log(error);
@@ -212,7 +212,7 @@ const removeVote = async (req, res) => {
 
         //find community id
         const findId = await db.communities.findById(communityId);
-        if (!findId) return res.status(404).send({ message: 'Not find communities id' });
+        if (!findId) return res.status(404).send({ message: 'Not find community' });
 
         //check own vote
         const vote = findId.vote.find((vote) => vote == userId);
@@ -286,13 +286,35 @@ const share = async (req, res) => {
         };
 
         const newShare = userId;
-        const data = await findId.share.unshift(newShare)
+        await findId.share.unshift(newShare)
         findId.save();
-        
+
         res.status(200).send({
             message: 'Success',
             count: findId.share.length,
-            data,
+            userId,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: 'Internal server error' });
+    };
+};
+
+//get detail commnity
+const getDetailCommunity = async (req, res) => {
+    const { eventId } = req.params;
+
+    try {
+
+        //find event id
+        const findId = await db.communities.findById(eventId);
+        if (!findId) return res.status(404).send({ message: 'Not find commnity' });
+
+        res.status(200).send({
+            message: 'Success',
+            countVote: findId.vote.length,
+            countAnswer: findId.answer.length,
+            data: findId,
         });
     } catch (error) {
         console.log(error);
@@ -311,4 +333,5 @@ module.exports = {
     removeVote,
     addVoteAnswer,
     share,
+    getDetailCommunity,
 };

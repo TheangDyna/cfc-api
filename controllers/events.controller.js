@@ -103,7 +103,7 @@ const updateEvent = async (req, res) => {
         //update 
         const eventUpdate = await db.events.findById(eventId);
         res.status(200).send({
-            message: 'Update succes',
+            message: 'Succes',
             eventUpdate,
         });
     } catch (error) {
@@ -224,6 +224,28 @@ const share = async (req, res) => {
     };
 };
 
+//get detail event
+const getDetailEvent = async (req, res) => {
+    const { eventId } = req.params;
+
+    try {
+
+        //find events id
+        const findId = await db.events.findById(eventId);
+        if (!findId) return res.status(404).send({ message: 'Not find event' });
+
+        res.status(200).send({
+            message: 'Success',
+            countReact: findId.interesting.length,
+            countShare: findId.share.length,
+            data: findId,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: 'Internal server error' });
+    };
+};
+
 module.exports = {
     getEvents,
     createEvent,
@@ -232,4 +254,5 @@ module.exports = {
     addInteresting,
     removeInteresting,
     share,
+    getDetailEvent
 };
