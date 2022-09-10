@@ -1,15 +1,26 @@
 //init
 const express = require('express');
 const connectDb = require('./connectDb');
+const cors = require("cors");
 const app = express();
 const port = process.env.PORT||8000;
-const morgan = require('morgan')
+const morgan = require('morgan');
 //bodyParser
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 require('dotenv').config();
 morgan('tiny')
+
+
+// cors provides Express middleware to enable CORS
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
+
 //connectDb
 connectDb();
 
