@@ -256,7 +256,7 @@ const register = async (req, res) => {
 
         //check email in system
         const isExist = await db.users.findOne({ email: body.email });
-        if (isExist) return res.status(401).send({ message: 'This email already in use.' });
+        if (isExist) return res.status(401).send({ message: 'This email already in use' });
 
         //check email format
         if (!isEmail(body.email)) return res.status(401).send({ message: 'Invalid email format' });
@@ -302,7 +302,7 @@ const addUser = async (req, res) => {
 
         //check email in system
         const isExist = await db.users.findOne({ email: body.email })
-        if (isExist) return res.status(401).send({ message: 'This email already in use.' });
+        if (isExist) return res.status(401).send({ message: 'This email already in use' });
 
         //check email format
         if (!isEmail(body.email)) return res.status(401).send({ message: 'Invalid email format' });
@@ -333,7 +333,7 @@ const login = async (req, res) => {
 
         //check email format
         if (!isEmail(body.email)) return res.status(401).send({ message: 'Invalid email format' });
-        
+
         //find user record
         const user = await db.users.findOne({ email: body.email });
         if (!user) {
