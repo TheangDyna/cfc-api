@@ -296,7 +296,6 @@ const addUser = async (req, res) => {
             firstName: body.firstName,
             lastName: body.lastName,
             email: body.email,
-            email: body.email,
             password: bcrypt.hashSync(body.password, 8),
             role: body.role,
         });
@@ -327,17 +326,19 @@ const addUser = async (req, res) => {
 //login
 const login = async (req, res) => {
     const body = req.body;
-
     try {
 
         //empty body
         if (Object.keys(body).length == 0) return res.status(401).send({ message: 'Empty body' });
 
+        //check email format
+        if (!isEmail(body.email)) return res.status(401).send({ message: 'Invalid email format' });
+        
         //find user record
         const user = await db.users.findOne({ email: body.email });
         if (!user) {
             return res.status(401).send({
-                message: 'No User',
+                message: 'User not found',
             });
         };
 
