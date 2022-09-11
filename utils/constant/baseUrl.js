@@ -4,14 +4,12 @@ const PORT = process.env.PORT;
 //     ? `http://localhost:${PORT}`
 //     : process.env.API_URL;
 
-// const baseUrl_client =
-//   process.env.NODE_ENV !== "production"
-//     ? `http://localhost:3000`
-//     : process.env.CLIENT_URL;
-
 const baseUrl_database = process.env.API_URL;
 
-const baseUrl_client = process.env.CLIENT_URL;
+const baseUrl_client =
+  process.env.NODE_ENV !== "production"
+    ? `http://localhost:3000`
+    : process.env.CLIENT_URL;
 
 module.exports = {
   baseUrl_database,
