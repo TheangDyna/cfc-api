@@ -6,7 +6,7 @@ const PORT = process.env.PORT;
 
 const baseUrl_database = process.env.API_URL;
 
-const baseUrl_client = `http://localhost:3000`;
+const baseUrl_client = `http://localhost:3000` || `https://cfc-alumni.vercel.app`;
 
 module.exports = {
   baseUrl_database,
