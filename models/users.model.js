@@ -20,42 +20,110 @@ const userSchema = new mongoose.Schema({
     },
 
     //optional document
-    profileName: {
+
+    //bacsic info
+    profile: {
+        type: String,
+    },
+    gender: {
         type: String,
     },
     birthdate: {
         type: String,
     },
-    class: {
-        type: String, // join by code
-    },
-    contact: {
+    currentAdress: {
         type: String,
     },
-    status: {
-        type: Array, //not sure check later
+    homeTown: {
+        type: String,
+    },
+    
+    //education section
+    education: {
+        primary: {
+            type: String,
+        },
+        secondary: {
+            type: String,
+        },
+        high: {
+            type: String,
+        },
+        university: [
+          {
+            status: {
+                type: String,
+                enum: ['studied', 'graduated'],
+            },
+            name: {
+                type: String,
+            },
+            at: {
+                type: String,
+            },
+            degreeLevel: {
+                type: String,
+                enum: ['bachelor', 'master', 'doctoral'],
+            },
+            major: {
+                type: String,
+            },
+            startYear: {
+                type: String,
+            },
+            // if studied
+            currentYear: {
+                type: String,
+            },
+            // if graduated
+            endYear: {
+                type: String,
+            },
+          },
+        ],
+        work: [
+            {
+                status: {
+                    type: String,
+                    enum: ['working', 'stopped'],
+                },
+                name: {
+                    type: String,
+                },
+                at: {
+                    type: String,
+                },
+                position:  {
+                    type: String,
+                },
+                duration:  {
+                    type: String,
+                },
+            },
+          ],
     },
     bio: {
         type: String,
     },
-    major: {
-        type: String,
-    },
-    job:{
-        type: String,
-    },
-    address: {
-        type: String,
-    },
-    description: {
-        type: String,
-    },
+    
+    //contact section
+
+    contact: [
+        {type: String}
+    ],
+
+    //action
     favorite: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'news',
         }
     ],
+
+    //class
+    class: {
+        type: String,
+    },
 
     //role
     role: {
