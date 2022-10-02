@@ -108,9 +108,31 @@ const userSchema = new mongoose.Schema({
     
     //contact section
 
-    contact: [
-        {type: String}
-    ],
+    contact: {
+        email: {
+            type: String,
+        },
+        tel: [
+            {
+                type: String,
+            }
+        ],
+        facebook: {
+            type: String,
+        },
+        telegram: {
+            type: String,
+        },
+        linkedin: {
+            type: String,
+        },
+        instagram: {
+            type: String,
+        },
+        twitter: {
+            type: String,
+        },
+    },
 
     //action
     favorite: [
