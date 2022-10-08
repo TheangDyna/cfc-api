@@ -31,7 +31,7 @@ const userSchema = new mongoose.Schema({
     birthdate: {
         type: String,
     },
-    currentAdress: {
+    currentAddress: {
         type: String,
     },
     homeTown: {
