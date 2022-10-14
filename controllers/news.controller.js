@@ -4,49 +4,49 @@ const { v4: uuidv4 } = require('uuid');
 
 // get all news
 const getNews = async (req, res) => {
-    const { page } = req.query;
-    let limitPerPage = 5;
-    let pages;
-    let next = null;
-    let prev = null;
+    // const { page } = req.query;
+    // let limitPerPage = 5;
+    // let pages;
+    // let next = null;
+    // let prev = null;
 
     try {
 
-        //load data
-        const data = await db.news.find().skip(limitPerPage * (page - 1)).limit(5);
+        // //load data
+        // const data = await db.news.find().skip(limitPerPage * (page - 1)).limit(5);
 
-        // get total document
-        const count = await db.news.find().count();
+        // // get total document
+        // const count = await db.news.find().count();
 
-        //get pages
-        if (count % limitPerPage == 0) {
-            pages = count / limitPerPage;
-        } else {
-            pages = parseInt(count / limitPerPage) + 1;
-        };
+        // //get pages
+        // if (count % limitPerPage == 0) {
+        //     pages = count / limitPerPage;
+        // } else {
+        //     pages = parseInt(count / limitPerPage) + 1;
+        // };
 
-        //find prev page url
-        if (page != 1) {
-            if (page <= pages) {
-                prev = `http://localhost:3001/alumni/v1/news?page=${Number(page) - 1}`;
-            };
-        };
+        // //find prev page url
+        // if (page != 1) {
+        //     if (page <= pages) {
+        //         prev = `http://localhost:3001/alumni/v1/news?page=${Number(page) - 1}`;
+        //     };
+        // };
 
-        //find next page url
-        if (page < pages) {
-            next = `http://localhost:3001/alumni/v1/news?page=${Number(page) + 1}`;
-        };
+        // //find next page url
+        // if (page < pages) {
+        //     next = `http://localhost:3001/alumni/v1/news?page=${Number(page) + 1}`;
+        // };
 
         res.status(200).send({
             message: 'Success',
-            count,
-            amountPerPage: data.length,
-            page: `${page} of ${pages}`,
-            prevPage: prev,
-            nextPage: next,
-            firstPage: `http://localhost:3001/alumni/v1/news?page=1`,
-            currentPage: `http://localhost:3001/alumni/v1/news?page=${page}`,
-            lastPage: `http://localhost:3001/alumni/v1/news?page=${pages}`,
+            // count,
+            // amountPerPage: data.length,
+            // page: `${page} of ${pages}`,
+            // prevPage: prev,
+            // nextPage: next,
+            // firstPage: `http://localhost:3001/alumni/v1/news?page=1`,
+            // currentPage: `http://localhost:3001/alumni/v1/news?page=${page}`,
+            // lastPage: `http://localhost:3001/alumni/v1/news?page=${pages}`,
             data,
         });
     } catch (error) {
