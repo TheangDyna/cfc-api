@@ -10,7 +10,9 @@ const getStories = async (req, res) => {
 
     try {
 
-        // //load data
+        //load data
+        const data = await db.stories.find();
+
         // const data = await db.stories.find().skip(limitPerPage * (page - 1)).limit(5);
 
         // //get total document

@@ -10,7 +10,9 @@ const getEvents = async (req, res) => {
 
     try {
 
-        // //load data
+        //load data
+        const data = await db.events.find();
+
         // const data = await db.events.find().skip(limitPerPage * (page - 1)).limit(5);
 
         // //get total document

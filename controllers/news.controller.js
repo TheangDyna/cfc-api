@@ -12,9 +12,11 @@ const getNews = async (req, res) => {
 
     try {
 
-        // //load data
-        // const data = await db.news.find().skip(limitPerPage * (page - 1)).limit(5);
+        //load data
+        const data = await db.news.find();
 
+        // const data = await db.news.find().skip(limitPerPage * (page - 1)).limit(5);
+        
         // // get total document
         // const count = await db.news.find().count();
 
