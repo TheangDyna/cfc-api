@@ -7,8 +7,7 @@ const communitySchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        enum: ['hot', 'event', 'holiday', 'scholarship', 'job', 'tip', 'other'],
-        default: 'other'
+        enum: ['Hot', 'Event', 'Holiday', 'Scholarship', 'Job', 'Tip'],
     },
     title: {
         type: String,
