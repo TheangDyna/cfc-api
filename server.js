@@ -17,7 +17,7 @@ morgan("tiny");
 const { baseUrl_client } = require("./utils/constant/baseUrl");
 app.use(
   cors({
-    origin: [baseUrl_client],
+    origin: [baseUrl_client, 'http://localhost:3000'],
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
