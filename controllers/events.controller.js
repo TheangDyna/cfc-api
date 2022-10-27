@@ -70,7 +70,7 @@ const createEvent = async (req, res) => {
             title: body.title,
             coverName: body.coverName,
             startDate: body.startDate,
-            startDate: body.startDate,
+            endDate: body.endDate,
             category: body.category,
             location: body.location,
             description: body.description,
