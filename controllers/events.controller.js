@@ -69,8 +69,10 @@ const createEvent = async (req, res) => {
             createBy: userId,
             title: body.title,
             coverName: body.coverName,
-            date: body.date,
+            startDate: body.startDate,
+            startDate: body.startDate,
             category: body.category,
+            location: body.location,
             description: body.description,
         });
 
