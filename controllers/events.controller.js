@@ -37,7 +37,7 @@ const getEvents = async (req, res) => {
         //     next = `http://localhost:3001/alumni/v1/events?page=${Number(page) + 1}`;
         // };
 
-        res.stamessagetus(200).send({
+        res.status(200).send({
             message: 'Success',
             // count,
             // amountPerPage: data.length,
