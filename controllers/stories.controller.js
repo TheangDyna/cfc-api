@@ -103,7 +103,7 @@ const updateStory = async (req, res) => {
         const storyUpdate = await db.stories.findById(storyId);
 
         res.status(200).send({
-            message: 'Succes',
+            message: 'Success',
             storyUpdate,
         });
     } catch (error) {

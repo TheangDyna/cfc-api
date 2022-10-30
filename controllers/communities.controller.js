@@ -67,7 +67,7 @@ const updateCommunity = async (req, res) => {
         const communityUpdate = await db.communities.findById(communityId);
 
         res.status(200).send({
-            message: 'Succes',
+            message: 'Success',
             communityUpdate,
         });
     } catch (error) {

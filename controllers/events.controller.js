@@ -37,7 +37,7 @@ const getEvents = async (req, res) => {
         //     next = `http://localhost:3001/alumni/v1/events?page=${Number(page) + 1}`;
         // };
 
-        res.status(200).send({
+        res.stamessagetus(200).send({
             message: 'Success',
             // count,
             // amountPerPage: data.length,
@@ -107,7 +107,7 @@ const updateEvent = async (req, res) => {
         //update 
         const eventUpdate = await db.events.findById(eventId);
         res.status(200).send({
-            message: 'Succes',
+            message: 'Success',
             eventUpdate,
         });
     } catch (error) {
@@ -127,7 +127,7 @@ const deleteEvent = async (req, res) => {
         if (!data) return res.status(404).send({ message: 'Not find event' });
 
         res.status(200).send({
-            message: 'success',
+            message: 'Success',
             data: data,
         });
     } catch (error) {

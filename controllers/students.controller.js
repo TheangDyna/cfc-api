@@ -68,7 +68,7 @@ const updateStudent = async (req, res) => {
         const studentUpdate = await db.students.findById(studentId);
 
         res.status(200).send({
-            message: 'Succes',
+            message: 'Success',
             studentUpdate,
         });
     } catch (error) {
