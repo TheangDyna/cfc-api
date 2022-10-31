@@ -110,7 +110,7 @@ const updateNews = async (req, res) => {
         const newsUpdate = await db.news.findById(newsId);
 
         res.status(200).send({
-            message: 'Succes',
+            message: 'Success',
             newsUpdate,
         });
     } catch (error) {
