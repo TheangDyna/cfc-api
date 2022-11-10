@@ -32,8 +32,10 @@ const createStudent = async (req, res) => {
         //create data
         const newStudent = new db.students({
             createBy: userId,
-            generation: body.generation,
+            category: body.category,
             title: body.title,
+            coverName: body.coverName,
+            generation: body.generation,
             code: generateCode(6),
         });
 
