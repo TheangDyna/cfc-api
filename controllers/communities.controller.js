@@ -302,12 +302,12 @@ const share = async (req, res) => {
 
 //get detail commnity
 const getDetailCommunity = async (req, res) => {
-    const { eventId } = req.params;
+    const { communityId } = req.params;
 
     try {
 
         //find event id
-        const findId = await db.communities.findById(eventId);
+        const findId = await db.communities.findById(communityId);
         if (!findId) return res.status(404).send({ message: 'Not find commnity' });
 
         res.status(200).send({
