@@ -6,7 +6,7 @@ const getCommunities = async (req, res) => {
     try {
 
         //find community id
-        const data = await db.communities.find();
+        const data = await db.communities.find().populate("createBy");
         res.status(200).send({
             message: 'Success',
             count: data.length,
