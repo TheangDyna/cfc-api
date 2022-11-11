@@ -303,7 +303,6 @@ const share = async (req, res) => {
 //get detail commnity
 const getDetailCommunity = async (req, res) => {
     const { communityId } = req.params;
-    console.log(communityId);
 
     try {
 
