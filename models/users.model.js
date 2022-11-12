@@ -153,7 +153,16 @@ const userSchema = new mongoose.Schema({
         enum: ['user', 'teacher', 'admin'],
         default: 'user',
     },
-}, { timestamps: true });
+}, {
+    toJSON: {
+      transform(doc, ret) {
+        delete ret.password;
+        delete ret.__v;
+      },
+    },
+    timestamps: true,
+  }
+);
 
 const UsersModel = mongoose.model('users', userSchema);
 

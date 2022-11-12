@@ -22,7 +22,15 @@ const storySchema = new mongoose.Schema({
     description: {
         type: String,
     },
-}, { timestamps: true });
+}, {
+    toJSON: {
+      transform(doc, ret) {
+        delete ret.__v;
+      },
+    },
+    timestamps: true,
+  }
+);
 
 const StoriesModel = mongoose.model('stories', storySchema);
 

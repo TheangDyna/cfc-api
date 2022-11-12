@@ -34,7 +34,14 @@ const studentSchema = new mongoose.Schema(
       },
     ],
   },
-  { timestamps: true }
+  {
+    toJSON: {
+      transform(doc, ret) {
+        delete ret.__v;
+      },
+    },
+    timestamps: true,
+  }
 );
 
 const StudentsModel = mongoose.model("students", studentSchema);

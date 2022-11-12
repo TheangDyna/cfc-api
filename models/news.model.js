@@ -57,7 +57,15 @@ const newsSchema = new mongoose.Schema({
             required: true,
         },
     ],
-}, { timestamps: true })
+}, {
+    toJSON: {
+      transform(doc, ret) {
+        delete ret.__v;
+      },
+    },
+    timestamps: true,
+  }
+);
 
 const NewsModel = mongoose.model('news', newsSchema);
 

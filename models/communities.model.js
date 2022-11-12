@@ -52,7 +52,16 @@ const communitySchema = new mongoose.Schema({
             ref: 'users',
         },
     ],
-}, { timestamps: true })
+  },
+  {
+    toJSON: {
+      transform(doc, ret) {
+        delete ret.__v;
+      },
+    },
+    timestamps: true,
+  }
+);
 
 const CommunitiesModel = mongoose.model('communities', communitySchema);
 
