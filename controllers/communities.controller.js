@@ -307,7 +307,7 @@ const getDetailCommunity = async (req, res) => {
     try {
 
         //find event id
-        const findId = await db.communities.findById(communityId).populate({ path: "createBy", select: 'firstName lastName profile' }, { path: "userId", select: 'firstName lastName profile' });
+        const findId = await db.communities.findById(communityId).populate({ path: "createBy", select: 'firstName lastName profile' }, { path: "answer.userId", select: 'firstName lastName profile' });
         if (!findId) return res.status(404).send({ message: 'Not find commnity' });
 
         res.status(200).send({
