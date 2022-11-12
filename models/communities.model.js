@@ -27,7 +27,7 @@ const communitySchema = new mongoose.Schema({
             _id: {
                 type: String,
             },
-            userId: {
+            createBy: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: 'users',
             },
