@@ -6,7 +6,7 @@ const getCommunities = async (req, res) => {
     try {
 
         //find community id
-        const data = await db.communities.find().populate({ path: "createBy", select: 'firstName lastName profile' });
+        const data = await db.communities.find().populate({ path: "createBy", select: 'firstName lastName profile' }, { path: "answer.createBy", select: 'firstName lastName profile' });
         res.status(200).send({
             message: 'Success',
             count: data.length,
