@@ -13,7 +13,7 @@ const getNews = async (req, res) => {
     try {
 
         //load data
-        const data = await db.news.find();
+        const data = await db.news.find().populate({ path: "comment.userId", select: 'firstName lastName profile' });
 
         // const data = await db.news.find().skip(limitPerPage * (page - 1)).limit(5);
         
