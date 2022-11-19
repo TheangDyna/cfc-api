@@ -29,10 +29,8 @@ const studentSchema = new mongoose.Schema(
     },
     student: [
       {
-        userId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "users",
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
       },
     ],
   },
