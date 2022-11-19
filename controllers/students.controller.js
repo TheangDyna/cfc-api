@@ -199,12 +199,12 @@ const getDetailStudentAlumni = async (req, res) => {
         if (!findId) return res.status(404).send({ message: 'Not find student' });
 
         //find alumni id
-        const alumniId = await findId.student.find((data) => data._id == alumniId);;
-        if (!alumniId) return res.status(404).send({ message: 'Not find student' });
+        const findAlumniId = await findId.student.find((data) => data._id== alumniId);;
+        if (!findAlumniId) return res.status(404).send({ message: 'Not find student' });
 
         res.status(200).send({
             message: 'Success',
-            data: alumniId,
+            data: findAlumniId,
         });
     } catch (error) {
         console.log(error);
