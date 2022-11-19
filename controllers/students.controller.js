@@ -174,7 +174,7 @@ const getDetailStudent = async (req, res) => {
     try {
 
         //find student id
-        const findId = await db.students.findById(studentId).populate("student");
+        const findId = await db.students.findById(studentId).populate({path: "student"});
         if (!findId) return res.status(404).send({ message: 'Not find student' });
 
         res.status(200).send({
