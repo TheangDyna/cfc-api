@@ -188,6 +188,30 @@ const getDetailStudent = async (req, res) => {
     };
 };
 
+//get detail student
+const getDetailStudentAlumni = async (req, res) => {
+    const { studentId, alumniId } = req.params;
+
+    try {
+
+        //find student id
+        const findId = await db.students.findById(studentId);
+        if (!findId) return res.status(404).send({ message: 'Not find student' });
+
+        //find alumni id
+        const alumniId = await findId.student.find((data) => data._id == alumniId);;
+        if (!alumniId) return res.status(404).send({ message: 'Not find student' });
+
+        res.status(200).send({
+            message: 'Success',
+            data: alumniId,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: 'Internal server error' });
+    };
+};
+
 module.exports = {
     getStudents,
     createStudent,
@@ -196,4 +220,5 @@ module.exports = {
     joinClass,
     leaveClass,
     getDetailStudent,
+    getDetailStudentAlumni,
 };

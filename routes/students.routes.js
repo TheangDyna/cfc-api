@@ -6,6 +6,8 @@ module.exports = (app) => {
     //guest
     app.get('/alumni/v1/students', controller.getStudents);
     app.get('/alumni/v1/students/getDetailStudent/:studentId', controller.getDetailStudent);
+    app.get('/alumni/v1/students/getDetailStudentAlumni/:studentId/:alumniId', controller.getDetailStudentAlumni);
+
 
     //user
     app.post('/alumni/v1/students/join', [authJwt.verifyToken], controller.joinClass);
