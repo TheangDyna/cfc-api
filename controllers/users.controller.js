@@ -331,9 +331,6 @@ const login = async (req, res) => {
         //empty body
         if (Object.keys(body).length == 0) return res.status(401).send({ message: 'Empty body' });
 
-        //check email format
-        if (!isEmail(body.email)) return res.status(401).send({ message: 'Invalid email format' });
-
         //find user record
         const user = await db.users.findOne({ email: body.email });
         if (!user) {
