@@ -199,7 +199,7 @@ const getDetailStudentAlumni = async (req, res) => {
         if (!findId) return res.status(404).send({ message: 'Not find student' });
 
         //find alumni id
-        const findAlumniId = await findId.student.find((data) => data._id== alumniId).populate();
+        const findAlumniId = await findId.student.find((data) => data._id == alumniId).populate("_id");
         if (!findAlumniId) return res.status(404).send({ message: 'Not find student' });
 
         res.status(200).send({
